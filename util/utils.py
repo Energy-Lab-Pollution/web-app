@@ -29,14 +29,14 @@ def extract_dataframe(filename):
         object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
         logger.info("Getting .csv file")
         csv_string = object["Body"].read().decode("utf-8")
-        df = pd.read_csv(io.StringIO(csv_string))
+        # df = pd.read_csv(io.StringIO(csv_string))
 
     except botocore.exceptions.ClientError as error:
         print(f"Error for {filename}")
         logger.error(error)
-        df = pd.DataFrame([])
+        csv_string = ""
 
-    return df
+    return csv_string
 
 
 def extract_image(filename):
