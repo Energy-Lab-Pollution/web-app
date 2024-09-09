@@ -47,9 +47,9 @@ if st.button("Run"):
     )
 
     # Annual plot
-    st.image(data_wrapper.air_quality_plot)
+    st.image(data_wrapper.annual_plot)
     st.download_button(
-        label="Download Daily Data as CSV",
+        label="Download Annual Data as CSV",
         data=data_wrapper.air_quality_csv,
         file_name=f"{city_choice}_daily_data.csv",
         mime="text/csv",
