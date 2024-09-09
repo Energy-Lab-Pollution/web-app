@@ -20,6 +20,19 @@ logger.setLevel(logging.INFO)
 s3_client = boto3.client("s3", region_name=REGION_NAME)
 
 
+def extract_dataframe(object):
+    """
+    Parses a dataframe from S3
+    """
+    pass
+
+
+def extract_image(object):
+    """
+    Extracts an image from S3
+    """
+
+
 def extract_from_s3(filename):
     """
     Extracts current plumelabs data from S3
