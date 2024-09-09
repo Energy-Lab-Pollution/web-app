@@ -20,36 +20,50 @@ logger.setLevel(logging.INFO)
 s3_client = boto3.client("s3", region_name=REGION_NAME)
 
 
-def extract_dataframe(object):
+def extract_dataframe(filename):
     """
     Parses a dataframe from S3
-    """
-    pass
-
-
-def extract_image(object):
-    """
-    Extracts an image from S3
-    """
-
-
-def extract_from_s3(filename):
-    """
-    Extracts current plumelabs data from S3
     """
     try:
         object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
         logger.info("Getting .csv file")
-        csv_string = object["Body"].read().decode("utf-8")
+        csv_string = object["Body"].read()
         df = pd.read_csv(StringIO(csv_string))
-
-        logger.info(df.head())
 
     except botocore.exceptions.ClientError as error:
         logger.error(error)
         df = pd.DataFrame([])
 
     return df
+
+
+def extract_image(object, filename):
+    """
+    Extracts an image from S3
+    """
+    try:
+        object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
+        logger.info("Getting image")
+        data = object["Body"].read()
+
+    except botocore.exceptions.ClientError as error:
+        logger.error(error)
+        data = None
+
+    return data
+
+
+def extract_from_s3(filename):
+    """
+    Extracts data from S3
+    """
+    if ".csv" in filename:
+        data = extract_dataframe(filename)
+
+    else:
+        data = extract_image(filename)
+
+    return data
 
 
 def upload_to_s3(local_filename, s3_filename):
