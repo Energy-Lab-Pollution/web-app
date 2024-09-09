@@ -27,3 +27,39 @@ city_choice = st.selectbox("Select a city to fetch data and visualize", CITIES)
 
 if st.button("Run"):
     data_wrapper = DataWrapper(city_choice)
+
+    # Daily plot
+    st.image(data_wrapper.air_quality_plot)
+    st.download_button(
+        label="Download Daily Data as CSV",
+        data=data_wrapper.air_quality_csv,
+        file_name=f"{city_choice}_daily_data.csv",
+        mime="text/csv",
+    )
+
+    # Cigarrete plot
+    st.image(data_wrapper.cigarettes_plot)
+    st.download_button(
+        label="Download Cigarettes Data as CSV",
+        data=data_wrapper.cigarettes_csv,
+        file_name=f"{city_choice}_cigarettes_data.csv",
+        mime="text/csv",
+    )
+
+    # Annual plot
+    st.image(data_wrapper.air_quality_plot)
+    st.download_button(
+        label="Download Daily Data as CSV",
+        data=data_wrapper.air_quality_csv,
+        file_name=f"{city_choice}_daily_data.csv",
+        mime="text/csv",
+    )
+
+
+st.sidebar.markdown(
+    "**Pollution Monitoring App** developed by the Energy Lab at UChicago"
+)
+
+st.sidebar.markdown(
+    "_Note: We are using daily PM2.5 data provided by PlumeLabs_"
+)
