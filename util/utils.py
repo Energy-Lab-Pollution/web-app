@@ -2,8 +2,9 @@
 Script with util functions
 """
 
+import io
+from PIL import Image
 import logging
-from io import StringIO
 
 import boto3
 import botocore
@@ -28,7 +29,7 @@ def extract_dataframe(filename):
         object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
         logger.info("Getting .csv file")
         csv_string = object["Body"].read()
-        df = pd.read_csv(StringIO(csv_string))
+        df = pd.read_csv(io.StringIO(csv_string))
 
     except botocore.exceptions.ClientError as error:
         logger.error(error)
@@ -45,6 +46,7 @@ def extract_image(object, filename):
         object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
         logger.info("Getting image")
         data = object["Body"].read()
+        data = Image.open(io.BytesIO(data))
 
     except botocore.exceptions.ClientError as error:
         logger.error(error)
