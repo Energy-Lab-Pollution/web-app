@@ -28,17 +28,18 @@ def extract_dataframe(filename):
     try:
         object = s3_client.get_object(Bucket=BUCKET_NAME, Key=filename)
         logger.info("Getting .csv file")
-        csv_string = object["Body"].read()
+        csv_string = object["Body"].read().decode("utf-8")
         df = pd.read_csv(io.StringIO(csv_string))
 
     except botocore.exceptions.ClientError as error:
+        print(f"Error for {filename}")
         logger.error(error)
         df = pd.DataFrame([])
 
     return df
 
 
-def extract_image(object, filename):
+def extract_image(filename):
     """
     Extracts an image from S3
     """
@@ -49,6 +50,7 @@ def extract_image(object, filename):
         data = Image.open(io.BytesIO(data))
 
     except botocore.exceptions.ClientError as error:
+        print(f"Error for {filename}")
         logger.error(error)
         data = None
 
