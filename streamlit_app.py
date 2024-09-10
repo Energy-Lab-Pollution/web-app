@@ -12,9 +12,7 @@ from data_extraction.data_wrapper import DataWrapper
 
 
 # App layout
-st.set_page_config(
-    page_title="Pollution Monitoring App", page_icon=":bar_chart:"
-)
+st.set_page_config(page_title="Pollution Monitoring App", page_icon=":bar_chart:")
 
 # Custom CSS for basic styling
 
@@ -60,6 +58,4 @@ st.sidebar.markdown(
     "**Pollution Monitoring App** developed by the Energy Lab at UChicago"
 )
 
-st.sidebar.markdown(
-    "_Note: We are using daily PM2.5 data provided by PlumeLabs_"
-)
+st.sidebar.markdown("_Note: We are using daily PM2.5 data provided by PlumeLabs_")

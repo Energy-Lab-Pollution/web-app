@@ -9,7 +9,6 @@ import logging
 import boto3
 import botocore
 import botocore.exceptions
-import pandas as pd
 
 from util.constants import BUCKET_NAME, REGION_NAME
 
