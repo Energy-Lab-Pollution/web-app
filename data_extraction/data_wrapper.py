@@ -1,6 +1,8 @@
 """
 File with class to extract csv files and data from AWS
 """
+import io
+import pandas as pd
 
 from util.constants import IMAGE_FOLDER, CSV_FOLDER
 from util.utils import extract_from_s3
@@ -24,3 +26,9 @@ class DataWrapper:
         )
         self.air_quality_csv = extract_from_s3(f"{CSV_FOLDER}/{city}_daily.csv")
         self.annual_csv = extract_from_s3(f"{CSV_FOLDER}/{city}_annual.csv")
+
+        # Convert to dataframe
+        self.cigarettes_df = pd.read_csv(io.StringIO(self.cigarettes_df))
+        self.air_quality_df = pd.read_csv(io.StringIO(self.air_quality_df))
+        self.annual_df = pd.read_csv(io.StringIO(self.annual_df))
+

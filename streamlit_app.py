@@ -3,17 +3,19 @@ This script contains the necessary code for the streamlit app
 for the Energy Lab at UChicago
 """
 
+from datetime import datetime
+
 # Global imports
 import pytz
-from datetime import datetime
 import streamlit as st
 
 # Local imports
 from data_extraction.data_wrapper import DataWrapper
 from util.constants import CITIES, LOGO_URL
-from visualizations.create_visualizations import (create_lineplot,
+from visualizations.create_visualizations import (create_annual_plot,
                                                   create_cigarettes_plot,
-                                                  create_annual_plot)
+                                                  create_lineplot)
+
 # App layout
 st.set_page_config(page_title="Pollution Monitoring App", page_icon=":bar_chart:")
 
