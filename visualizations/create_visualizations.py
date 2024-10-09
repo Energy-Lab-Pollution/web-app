@@ -35,6 +35,9 @@ def create_lineplot(daily_df, city):
         labels={"pm2.5": "PM2.5 Levels", "date": "Date"}
     )
 
+    fig.update_traces(line_color='#000000')
+
+
     # Add horizontal lines for national and WHO standards
     fig.add_hline(
         y=city_daily["nat_std_daily"].iloc[0],

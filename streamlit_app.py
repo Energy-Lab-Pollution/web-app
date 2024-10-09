@@ -38,11 +38,31 @@ if st.button("Run"):
     data_wrapper = DataWrapper(city_choice)
 
     if view_data_only:
-        st.subheader(f"Data for {city_choice}")
+        st.header(f"Data for {city_choice}")
+
+        st.subheader("Daily PM2.5 Data")
         st.dataframe(data_wrapper.air_quality_df)  # Show the dataframe
         st.download_button(
             label="Download Data as CSV",
             data=data_wrapper.air_quality_csv,
+            file_name=f"{city_choice}_data_{str_today}.csv",
+            mime="text/csv",
+        )
+
+        st.subheader("Cigarettes Consumption Data")
+        st.dataframe(data_wrapper.cigarettes_df)  # Show the dataframe
+        st.download_button(
+            label="Download Data as CSV",
+            data=data_wrapper.cigarettes_df,
+            file_name=f"{city_choice}_data_{str_today}.csv",
+            mime="text/csv",
+        )
+
+        st.subheader("Annual PM2.5 Data")
+        st.dataframe(data_wrapper.air_quality_df)  # Show the dataframe
+        st.download_button(
+            label="Download Data as CSV",
+            data=data_wrapper.annual_df,
             file_name=f"{city_choice}_data_{str_today}.csv",
             mime="text/csv",
         )
