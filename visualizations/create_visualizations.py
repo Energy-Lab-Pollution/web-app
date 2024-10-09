@@ -83,7 +83,8 @@ def create_lineplot(daily_df, city):
         yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
         xaxis_title_font=dict(size=18),  # Larger x-axis title font
         yaxis_title_font=dict(size=18),  # Larger y-axis title font
-
+        width=1000,  # Increase width of the figure
+        height=600,  # Increase height of the figure
         template="plotly_white",  # A cleaner plot theme
     )
 
@@ -133,6 +134,8 @@ def create_cigarettes_plot(daily_df, city):
         yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
         xaxis_title_font=dict(size=18),  # Larger x-axis title font
         yaxis_title_font=dict(size=18),  # Larger y-axis title font
+        width=1000,  # Increase width of the figure
+        height=600,  # Increase height of the figure
     )
 
     return fig
@@ -205,6 +208,8 @@ def create_annual_plot(annual_df, city):
         yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
         showlegend=True,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        width=1000,  # Increase width of the figure
+        height=600,  # Increase height of the figure
     )
 
     # Return the Plotly figure
