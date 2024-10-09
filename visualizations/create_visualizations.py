@@ -24,19 +24,29 @@ def create_lineplot(daily_df, city):
     num_violate_who = city_daily[city_daily["violate_daily_who"]].shape[0]
 
     # Create interactive Plotly line plot
-    fig = px.line(
-        city_daily,
-        x="date",
-        y="pm2.5",
-        title=(
-            f"In 2024, {city} experienced air quality exceeding the national standard "
-            f"for {num_violate_nat} days and WHO standards for {num_violate_who} days"
-        ),
-        labels={"pm2.5": "PM2.5 Levels", "date": "Date"}
+    fig = go.Figure()
+
+    # Line plot for PM2.5 levels
+    fig.add_trace(
+        go.Scatter(
+            x=city_daily["date"],
+            y=city_daily["pm2.5"],
+            mode="lines",
+            line=dict(color="black"),
+            name="PM2.5 Levels",
+        )
     )
 
-    fig.update_traces(line_color='#000000')
-
+    # Scatter plot for PM2.5 points
+    fig.add_trace(
+        go.Scatter(
+            x=city_daily["date"],
+            y=city_daily["pm2.5"],
+            mode="markers",
+            marker=dict(color="black", size=6),
+            name="PM2.5 Points",
+        )
+    )
 
     # Add horizontal lines for national and WHO standards
     fig.add_hline(
@@ -44,14 +54,33 @@ def create_lineplot(daily_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Daily",
-        annotation_position="top left"
+        annotation_position="bottom left",  # Move the annotation to make it visible
+        annotation_font_size=12,
     )
     fig.add_hline(
         y=15,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Daily",
-        annotation_position="bottom left"
+        annotation_position="top left",  # Move the annotation for better visibility
+        annotation_font_size=12,
+    )
+
+    # Customize layout
+    fig.update_layout(
+        title=(
+            f"In 2024, {city} experienced air quality exceeding the national standard for {num_violate_nat} days "
+            f"and WHO standards for {num_violate_who} days."
+        ),
+        xaxis_title="Date",
+        yaxis_title="PM2.5 Levels",
+        xaxis=dict(tickmode="auto"),
+        yaxis=dict(
+            range=[0, max(city_daily["pm2.5"]) + 10]
+        ),  # Adjust range for better spacing
+        showlegend=True,
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        template="plotly_white",  # A cleaner plot theme
     )
 
     return fig
@@ -84,7 +113,7 @@ def create_cigarettes_plot(daily_df, city):
             x=weekly_summary["week"],
             y=weekly_summary["cigarettes"],
             name="Cigarettes",
-            marker_color="#e41a1c"
+            marker_color="#e41a1c",
         )
     )
 
@@ -93,7 +122,7 @@ def create_cigarettes_plot(daily_df, city):
         xaxis_title="Week",
         yaxis_title="Cigarettes",
         xaxis_tickformat="%B",
-        xaxis_tickangle=-45
+        xaxis_tickangle=-45,
     )
 
     return fig
@@ -129,7 +158,7 @@ def create_annual_plot(annual_df, city):
             x=city_annual["year"],
             y=city_annual["pm2.5"],
             name="PM2.5",
-            marker_color="#ff7f00"
+            marker_color="#ff7f00",
         )
     )
 
@@ -139,14 +168,14 @@ def create_annual_plot(annual_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Annual",
-        annotation_position="top left"
+        annotation_position="top left",
     )
     fig.add_hline(
         y=WHO_STD_ANNUAL,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Annual",
-        annotation_position="bottom left"
+        annotation_position="bottom left",
     )
 
     # Customize layout - Tick every 5 years
@@ -154,9 +183,9 @@ def create_annual_plot(annual_df, city):
         title=f"Annual Historical Data for {city}",
         xaxis_title="Year",
         yaxis_title="PM2.5",
-        xaxis=dict(tickmode='linear', tick0=city_annual["year"].min(), dtick=5),
+        xaxis=dict(tickmode="linear", tick0=city_annual["year"].min(), dtick=5),
         showlegend=True,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
     )
 
     # Return the Plotly figure

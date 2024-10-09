@@ -80,8 +80,6 @@ if st.button("Run"):
                 mime="text/csv",
             )
 
-            st.markdown("---")
-
             st.subheader(f"Cigarettes Consumption Plot for {city_choice} (Static)")
             # Cigarrete plot
             st.image(data_wrapper.cigarettes_plot)
@@ -91,8 +89,6 @@ if st.button("Run"):
                 file_name=f"{city_choice}_cigarettes_data_{str_today}.csv",
                 mime="text/csv",
             )
-
-            st.markdown("---")
 
             # Annual plot
             st.subheader(f"Annual PM2.5 Data for {city_choice} (Static)")
@@ -116,8 +112,6 @@ if st.button("Run"):
                 mime="text/csv",
             )
 
-            st.markdown("---")
-
             st.subheader(f"Cigarettes Consumption for {city_choice} (Interactive)")
             cigarettes_plot = create_cigarettes_plot(data_wrapper.air_quality_csv,
                                                      city_choice)
@@ -128,8 +122,6 @@ if st.button("Run"):
                 file_name=f"{city_choice}_cigarettes_data.csv",
                 mime="text/csv",
             )
-
-            st.markdown("---")
 
             st.subheader(f"Annual PM2.5 Data for {city_choice} (Interactive)")
             annual_plot = create_annual_plot(data_wrapper.annual_csv, city_choice)
