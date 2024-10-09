@@ -54,16 +54,16 @@ def create_lineplot(daily_df, city):
         line_color="blue",
         annotation_text="Nat. Std. - Daily",
         annotation_position="bottom left",  # Move the annotation to make it visible
-        annotation_font_size=12,
+        annotation_font_size=14,
         annotation_bgcolor="white"
     )
     fig.add_hline(
-        y=15,
+        y=WHO_STD_ANNUAL,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Daily",
         annotation_position="bottom left",  # Move the annotation for better visibility
-        annotation_font_size=12,
+        annotation_font_size=14,
         annotation_bgcolor="white"
     )
 
@@ -74,14 +74,16 @@ def create_lineplot(daily_df, city):
             f"national standard for {num_violate_nat} days \n"
             f"and WHO standards for {num_violate_who} days."
         ),
+        title_font=dict(size=20),
         xaxis_title="Date",
         yaxis_title="PM2.5 Levels",
-        xaxis=dict(tickmode="auto"),
-        # yaxis=dict(
-        #     range=[0, max(city_daily["pm2.5"]) + 10]
-        # ),  # Adjust range for better spacing
-        # showlegend=True,
-        # legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        xaxis=dict(tickmode="auto",
+                   tickfont=dict(size=14)),
+        # Larger x-axis tick font
+        yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
+        xaxis_title_font=dict(size=18),  # Larger x-axis title font
+        yaxis_title_font=dict(size=18),  # Larger y-axis title font
+
         template="plotly_white",  # A cleaner plot theme
     )
 
@@ -122,10 +124,15 @@ def create_cigarettes_plot(daily_df, city):
     fig.update_layout(
         title=(f"In {city}, exposure to PM2.5 in 2024 has been the equivalent of \n"
                f"smoking {annual_total} cigarettes"),
+        title_font=dict(size=20),  # Larger title font
         xaxis_title="Week",
         yaxis_title="Cigarettes",
         xaxis_tickformat="%B",
         xaxis_tickangle=-45,
+        xaxis=dict(tickfont=dict(size=14)),  # Larger x-axis tick font
+        yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
+        xaxis_title_font=dict(size=18),  # Larger x-axis title font
+        yaxis_title_font=dict(size=18),  # Larger y-axis title font
     )
 
     return fig
@@ -172,7 +179,7 @@ def create_annual_plot(annual_df, city):
         line_color="blue",
         annotation_text="Nat. Std. - Annual",
         annotation_position="bottom left",  # Move the annotation for better visibility
-        annotation_font_size=12,
+        annotation_font_size=14,
         annotation_bgcolor="white"
     )
     fig.add_hline(
@@ -181,16 +188,21 @@ def create_annual_plot(annual_df, city):
         line_color="red",
         annotation_text="WHO Std. - Annual",
         annotation_position="bottom left",  # Move the annotation for better visibility
-        annotation_font_size=12,
+        annotation_font_size=14,
         annotation_bgcolor="white"
     )
 
     # Customize layout - Tick every 5 years
+    # Customize layout with larger fonts
     fig.update_layout(
         title=f"Annual Historical Data for {city}",
+        title_font=dict(size=20),  # Larger title font
         xaxis_title="Year",
         yaxis_title="PM2.5",
         xaxis=dict(tickmode="linear", tick0=city_annual["year"].min(), dtick=5),
+        xaxis_title_font=dict(size=18),  # Larger x-axis title font
+        yaxis_title_font=dict(size=18),  # Larger y-axis title font
+        yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
         showlegend=True,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
     )
