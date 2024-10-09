@@ -4,7 +4,6 @@ Script to create Plotly Visualizations
 
 import io
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
@@ -54,7 +53,7 @@ def create_lineplot(daily_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Daily",
-        annotation_position="top right",  # Move the annotation to make it visible
+        annotation_position="bottom left",  # Move the annotation to make it visible
         annotation_font_size=12,
         annotation_bgcolor="white"
     )
@@ -63,7 +62,7 @@ def create_lineplot(daily_df, city):
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Daily",
-        annotation_position="top right",  # Move the annotation for better visibility
+        annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=12,
         annotation_bgcolor="white"
     )
@@ -71,7 +70,8 @@ def create_lineplot(daily_df, city):
     # Customize layout
     fig.update_layout(
         title=(
-            f"In 2024, {city} experienced air quality exceeding the national standard for {num_violate_nat} days "
+            f"In 2024, {city} experienced air quality exceeding the \n"
+            f"national standard for {num_violate_nat} days \n"
             f"and WHO standards for {num_violate_who} days."
         ),
         xaxis_title="Date",
@@ -120,7 +120,8 @@ def create_cigarettes_plot(daily_df, city):
     )
 
     fig.update_layout(
-        title=f"In {city}, exposure to PM2.5 in 2024 has been the equivalent of smoking {annual_total} cigarettes",
+        title=(f"In {city}, exposure to PM2.5 in 2024 has been the equivalent of \n"
+               f"smoking {annual_total} cigarettes"),
         xaxis_title="Week",
         yaxis_title="Cigarettes",
         xaxis_tickformat="%B",
@@ -170,7 +171,7 @@ def create_annual_plot(annual_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Annual",
-        annotation_position="top right",  # Move the annotation for better visibility
+        annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=12,
         annotation_bgcolor="white"
     )
@@ -179,7 +180,7 @@ def create_annual_plot(annual_df, city):
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Annual",
-        annotation_position="top right",  # Move the annotation for better visibility
+        annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=12,
         annotation_bgcolor="white"
     )
