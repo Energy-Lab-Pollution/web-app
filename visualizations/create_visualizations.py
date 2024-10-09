@@ -2,6 +2,8 @@
 Script to create Plotly Visualizations
 """
 
+import io
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
@@ -13,6 +15,8 @@ def create_lineplot(daily_df, city):
     """
     Creates an interactive line plot for a given city from a certain date using Plotly.
     """
+    # CSV comes as string - convert to df
+    daily_df = pd.read_csv(io.StringIO(daily_df))
     # Filter the data for the specific city and date range
     city_daily = daily_df[
         (daily_df["city"] == city)
@@ -58,6 +62,9 @@ def create_cigarettes_plot(daily_df, city):
     """
     Creates an interactive bar plot with weekly cigarettes consumption using Plotly.
     """
+
+    # CSV comes as string - convert to df
+    daily_df = pd.read_csv(io.StringIO(daily_df))
     # Filter the data for the specific city and date range
     city_daily = daily_df[
         (daily_df["city"] == city)
@@ -103,6 +110,9 @@ def create_annual_plot(annual_df, city):
     Returns:
     - fig: The Plotly figure object to be used in the Streamlit app.
     """
+
+    # CSV comes as string - convert to df
+    annual_df = pd.read_csv(io.StringIO(annual_df))
     city_annual = annual_df[annual_df["city"] == city]
 
     # Check if there's data for the city
