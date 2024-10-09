@@ -39,7 +39,7 @@ if st.button("Run"):
 
     if view_data_only:
         st.subheader(f"Data for {city_choice}")
-        st.dataframe(data_wrapper.air_quality_csv)  # Show the dataframe
+        st.dataframe(data_wrapper.air_quality_df)  # Show the dataframe
         st.download_button(
             label="Download Data as CSV",
             data=data_wrapper.air_quality_csv,
@@ -51,6 +51,7 @@ if st.button("Run"):
 
         if plot_type == "Static":
             # Daily plot
+            st.subheader(f"PM2.5 Daily Plot for {city_choice} (Static)")
             st.image(data_wrapper.air_quality_plot)
             st.download_button(
                 label="Download Daily Data as CSV",
@@ -59,6 +60,9 @@ if st.button("Run"):
                 mime="text/csv",
             )
 
+            st.markdown("---")
+
+            st.subheader(f"Cigarettes Consumption Plot for {city_choice} (Static)")
             # Cigarrete plot
             st.image(data_wrapper.cigarettes_plot)
             st.download_button(
@@ -68,7 +72,10 @@ if st.button("Run"):
                 mime="text/csv",
             )
 
+            st.markdown("---")
+
             # Annual plot
+            st.subheader(f"Annual PM2.5 Data for {city_choice} (Static)")
             st.image(data_wrapper.annual_plot)
             st.download_button(
                 label="Download Annual Data as CSV",
@@ -89,6 +96,8 @@ if st.button("Run"):
                 mime="text/csv",
             )
 
+            st.markdown("---")
+
             st.subheader(f"Cigarettes Consumption for {city_choice} (Interactive)")
             cigarettes_plot = create_cigarettes_plot(data_wrapper.air_quality_csv,
                                                      city_choice)
@@ -99,6 +108,8 @@ if st.button("Run"):
                 file_name=f"{city_choice}_cigarettes_data.csv",
                 mime="text/csv",
             )
+
+            st.markdown("---")
 
             st.subheader(f"Annual PM2.5 Data for {city_choice} (Interactive)")
             annual_plot = create_annual_plot(data_wrapper.annual_csv, city_choice)
