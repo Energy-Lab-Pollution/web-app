@@ -104,7 +104,7 @@ def create_annual_plot(annual_df, city):
     - fig: The Plotly figure object to be used in the Streamlit app.
     """
     city_annual = annual_df[annual_df["city"] == city]
-  
+
     # Check if there's data for the city
     if city_annual.empty:
         st.warning(f"No data available for city: {city}")
@@ -142,12 +142,12 @@ def create_annual_plot(annual_df, city):
         annotation_position="bottom left"
     )
 
-    # Customize layout
+    # Customize layout - Tick every 5 years
     fig.update_layout(
         title=f"Annual Historical Data for {city}",
         xaxis_title="Year",
         yaxis_title="PM2.5",
-        xaxis=dict(tickmode='linear', tick0=city_annual["year"].min(), dtick=5),  # Tick every 5 years
+        xaxis=dict(tickmode='linear', tick0=city_annual["year"].min(), dtick=5),
         showlegend=True,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
