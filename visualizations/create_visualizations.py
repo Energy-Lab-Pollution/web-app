@@ -54,16 +54,18 @@ def create_lineplot(daily_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Daily",
-        annotation_position="bottom left",  # Move the annotation to make it visible
+        annotation_position="top right",  # Move the annotation to make it visible
         annotation_font_size=12,
+        annotation_bgcolor="white"
     )
     fig.add_hline(
         y=15,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Daily",
-        annotation_position="top left",  # Move the annotation for better visibility
+        annotation_position="top right",  # Move the annotation for better visibility
         annotation_font_size=12,
+        annotation_bgcolor="white"
     )
 
     # Customize layout
@@ -75,11 +77,11 @@ def create_lineplot(daily_df, city):
         xaxis_title="Date",
         yaxis_title="PM2.5 Levels",
         xaxis=dict(tickmode="auto"),
-        yaxis=dict(
-            range=[0, max(city_daily["pm2.5"]) + 10]
-        ),  # Adjust range for better spacing
-        showlegend=True,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        # yaxis=dict(
+        #     range=[0, max(city_daily["pm2.5"]) + 10]
+        # ),  # Adjust range for better spacing
+        # showlegend=True,
+        # legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         template="plotly_white",  # A cleaner plot theme
     )
 
@@ -168,14 +170,18 @@ def create_annual_plot(annual_df, city):
         line_dash="dash",
         line_color="blue",
         annotation_text="Nat. Std. - Annual",
-        annotation_position="top left",
+        annotation_position="top right",  # Move the annotation for better visibility
+        annotation_font_size=12,
+        annotation_bgcolor="white"
     )
     fig.add_hline(
         y=WHO_STD_ANNUAL,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Annual",
-        annotation_position="bottom left",
+        annotation_position="top right",  # Move the annotation for better visibility
+        annotation_font_size=12,
+        annotation_bgcolor="white"
     )
 
     # Customize layout - Tick every 5 years
