@@ -8,7 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from util.constants import CIGARETTES_CONSTANT, MINDATE, WHO_STD_ANNUAL
+from util.constants import CIGARETTES_CONSTANT, WHO_STD_ANNUAL
 
 
 def create_lineplot(daily_df, city):
@@ -16,12 +16,8 @@ def create_lineplot(daily_df, city):
     Creates an interactive line plot for a given city from a certain date using Plotly.
     """
     # CSV comes as string - convert to df
-    daily_df = pd.read_csv(io.StringIO(daily_df))
-    # Filter the data for the specific city and date range
-    city_daily = daily_df[
-        (daily_df["city"] == city)
-        & (daily_df["date"] >= MINDATE)
-    ]
+    city_daily = pd.read_csv(io.StringIO(daily_df))
+    city_daily["date"] = pd.to_datetime(city_daily["date"], errors="coerce")
 
     # Count the number of violations
     num_violate_nat = city_daily[city_daily["violate_daily_nat"]].shape[0]
@@ -64,16 +60,14 @@ def create_cigarettes_plot(daily_df, city):
     """
 
     # CSV comes as string - convert to df
-    daily_df = pd.read_csv(io.StringIO(daily_df))
+    city_daily = pd.read_csv(io.StringIO(daily_df))
+
     # Filter the data for the specific city and date range
-    city_daily = daily_df[
-        (daily_df["city"] == city)
-        & (daily_df["date"] >= MINDATE)
-    ]
     city_daily["cigarettes"] = city_daily["pm2.5"] / CIGARETTES_CONSTANT
     annual_total = round(city_daily["cigarettes"].sum(), 1)
 
     # Group by week and summarize
+    city_daily["date"] = pd.to_datetime(city_daily["date"], errors="coerce")
     city_daily["week"] = (
         city_daily["date"].dt.to_period("W").apply(lambda r: r.start_time)
     )
@@ -161,7 +155,6 @@ def create_annual_plot(annual_df, city):
         showlegend=True,
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
-
 
     # Return the Plotly figure
     return fig
