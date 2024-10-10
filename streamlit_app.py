@@ -12,9 +12,11 @@ import streamlit as st
 # Local imports
 from data_extraction.data_wrapper import DataWrapper
 from util.constants import CITIES, LOGO_URL
-from visualizations.create_visualizations import (create_annual_plot,
-                                                  create_cigarettes_plot,
-                                                  create_lineplot)
+from visualizations.create_visualizations import (
+    create_annual_plot,
+    create_cigarettes_plot,
+    create_lineplot,
+)
 
 # App layout
 st.set_page_config(page_title="Pollution Monitoring App", page_icon=":bar_chart:")
@@ -113,8 +115,9 @@ if st.button("Run"):
             )
 
             st.subheader(f"Cigarettes Consumption for {city_choice} (Interactive)")
-            cigarettes_plot = create_cigarettes_plot(data_wrapper.air_quality_csv,
-                                                     city_choice)
+            cigarettes_plot = create_cigarettes_plot(
+                data_wrapper.air_quality_csv, city_choice
+            )
             st.plotly_chart(cigarettes_plot)
             st.download_button(
                 label="Download Cigarettes Data as CSV",
@@ -130,7 +133,7 @@ if st.button("Run"):
                 label="Download Annual Data as CSV",
                 data=data_wrapper.annual_csv,  # Changed to annual CSV data
                 file_name=f"{city_choice}_annual_data.csv",
-                mime="text/csv"
+                mime="text/csv",
             )
 
 

@@ -55,7 +55,7 @@ def create_lineplot(daily_df, city):
         annotation_text="Nat. Std. - Daily",
         annotation_position="bottom left",  # Move the annotation to make it visible
         annotation_font_size=14,
-        annotation_bgcolor="white"
+        annotation_bgcolor="white",
     )
     fig.add_hline(
         y=WHO_STD_DAILY,
@@ -64,23 +64,24 @@ def create_lineplot(daily_df, city):
         annotation_text="WHO Std. - Daily",
         annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=14,
-        annotation_bgcolor="white"
+        annotation_bgcolor="white",
     )
 
     # Customize layout
     fig.update_layout(
-        title={"text": (f"""In 2024, {city} experienced air quality exceeding the <br>
-                national standard for {num_violate_nat} days <br>
-                and WHO standards for {num_violate_who} days"""),
-               "x": 0.5,
-               "xanchor": "center",
-               "yanchor": "top",
-               "font": {"size": 20}},
-        showlegend=True,
+        title={
+            "text": (
+                f"""In 2024, {city} experienced air quality exceeding the <br> national standard for {num_violate_nat} days and WHO standards for {num_violate_who} days"""
+            ),
+            "x": 0.5,
+            "xanchor": "center",
+            "yanchor": "top",
+            "font": {"size": 20},
+        },
+        showlegend=False,
         xaxis_title="Date",
         yaxis_title="PM2.5 Levels",
-        xaxis=dict(tickmode="auto",
-                   tickfont=dict(size=14)),
+        xaxis=dict(tickmode="auto", tickfont=dict(size=14)),
         # Larger x-axis tick font
         yaxis=dict(tickfont=dict(size=14)),  # Larger y-axis tick font
         xaxis_title_font=dict(size=18),  # Larger x-axis title font
@@ -125,12 +126,17 @@ def create_cigarettes_plot(daily_df, city):
     )
 
     fig.update_layout(
-        title={"text": (f"""In {city}, exposure to PM2.5 in 2024 has been the
-                        equivalent of <br> smoking {annual_total} cigarettes"""),
-               "x": 0.5,
-               "xanchor": "center",
-               "yanchor": "top",
-               "font": {"size": 20}},
+        title={
+            "text": (
+                f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of
+                        <br> smoking {annual_total} cigarettes"""
+            ),
+            "x": 0.5,
+            "xanchor": "center",
+            "yanchor": "top",
+            "font": {"size": 20},
+        },
+        showlegend=True,
         xaxis_title="Week",
         yaxis_title="Cigarettes",
         xaxis_tickformat="%B",
@@ -188,7 +194,7 @@ def create_annual_plot(annual_df, city):
         annotation_text="Nat. Std. - Annual",
         annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=14,
-        annotation_bgcolor="white"
+        annotation_bgcolor="white",
     )
     fig.add_hline(
         y=WHO_STD_ANNUAL,
@@ -197,17 +203,19 @@ def create_annual_plot(annual_df, city):
         annotation_text="WHO Std. - Annual",
         annotation_position="bottom left",  # Move the annotation for better visibility
         annotation_font_size=14,
-        annotation_bgcolor="white"
+        annotation_bgcolor="white",
     )
 
     # Customize layout - Tick every 5 years
     # Customize layout with larger fonts
     fig.update_layout(
-        title={"text": f"Annual Historical Data for {city}",
-               "x": 0.5,
-               "xanchor": "center",
-               "yanchor": "top",
-               "font": {"size": 20}},
+        title={
+            "text": f"Annual Historical Data for {city}",
+            "x": 0.5,
+            "xanchor": "center",
+            "yanchor": "top",
+            "font": {"size": 20},
+        },
         xaxis_title="Year",
         yaxis_title="PM2.5",
         xaxis=dict(tickmode="linear", tick0=city_annual["year"].min(), dtick=5),
