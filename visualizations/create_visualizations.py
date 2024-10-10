@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from util.constants import CIGARETTES_CONSTANT, WHO_STD_ANNUAL
+from util.constants import CIGARETTES_CONSTANT, WHO_STD_ANNUAL, WHO_STD_DAILY
 
 
 def create_lineplot(daily_df, city):
@@ -58,7 +58,7 @@ def create_lineplot(daily_df, city):
         annotation_bgcolor="white"
     )
     fig.add_hline(
-        y=WHO_STD_ANNUAL,
+        y=WHO_STD_DAILY,
         line_dash="dash",
         line_color="red",
         annotation_text="WHO Std. - Daily",
@@ -70,11 +70,12 @@ def create_lineplot(daily_df, city):
     # Customize layout
     fig.update_layout(
         title=(
-            f"In 2024, {city} experienced air quality exceeding the \n"
-            f"national standard for {num_violate_nat} days \n"
-            f"and WHO standards for {num_violate_who} days."
+            f"""In 2024, {city} experienced air quality exceeding the \n
+            national standard for {num_violate_nat} days \n
+            and WHO standards for {num_violate_who} days"""
         ),
         title_font=dict(size=20),
+        showlegend=False,
         xaxis_title="Date",
         yaxis_title="PM2.5 Levels",
         xaxis=dict(tickmode="auto",
@@ -123,8 +124,8 @@ def create_cigarettes_plot(daily_df, city):
     )
 
     fig.update_layout(
-        title=(f"In {city}, exposure to PM2.5 in 2024 has been the equivalent of \n"
-               f"smoking {annual_total} cigarettes"),
+        title=(f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of \n"
+               smoking {annual_total} cigarettes"""),
         title_font=dict(size=20),  # Larger title font
         xaxis_title="Week",
         yaxis_title="Cigarettes",

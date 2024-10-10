@@ -18,3 +18,4 @@ CITIES = ["Chiang Mai", "Kigali", "Kanpur", "Kolkata"]
 MINDATE = datetime(2024, 1, 1)
 CIGARETTES_CONSTANT = 22
 WHO_STD_ANNUAL = 5
+WHO_STD_DAILY = 15
