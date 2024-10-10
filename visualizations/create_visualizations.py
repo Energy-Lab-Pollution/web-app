@@ -69,13 +69,14 @@ def create_lineplot(daily_df, city):
 
     # Customize layout
     fig.update_layout(
-        title=(
-            f"""In 2024, {city} experienced air quality exceeding the <br>
-            national standard for {num_violate_nat} days <br>
-            and WHO standards for {num_violate_who} days"""
-        ),
-        title_font=dict(size=20),
-        showlegend=False,
+        title={"text": (f"""In 2024, {city} experienced air quality exceeding the <br>
+                national standard for {num_violate_nat} days <br>
+                and WHO standards for {num_violate_who} days"""),
+               "x": 0.5,
+               "xanchor": "center",
+               "yanchor": "top",
+               "font": {"size": 20}},
+        showlegend=True,
         xaxis_title="Date",
         yaxis_title="PM2.5 Levels",
         xaxis=dict(tickmode="auto",
@@ -124,9 +125,12 @@ def create_cigarettes_plot(daily_df, city):
     )
 
     fig.update_layout(
-        title=(f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of <br>
-               smoking {annual_total} cigarettes"""),
-        title_font=dict(size=20),  # Larger title font
+        title={"text": (f"""In {city}, exposure to PM2.5 in 2024 has been the
+                        equivalent of <br> smoking {annual_total} cigarettes"""),
+               "x": 0.5,
+               "xanchor": "center",
+               "yanchor": "top",
+               "font": {"size": 20}},
         xaxis_title="Week",
         yaxis_title="Cigarettes",
         xaxis_tickformat="%B",
@@ -199,8 +203,11 @@ def create_annual_plot(annual_df, city):
     # Customize layout - Tick every 5 years
     # Customize layout with larger fonts
     fig.update_layout(
-        title=f"Annual Historical Data for {city}",
-        title_font=dict(size=20),  # Larger title font
+        title={"text": f"Annual Historical Data for {city}",
+               "x": 0.5,
+               "xanchor": "center",
+               "yanchor": "top",
+               "font": {"size": 20}},
         xaxis_title="Year",
         yaxis_title="PM2.5",
         xaxis=dict(tickmode="linear", tick0=city_annual["year"].min(), dtick=5),
