@@ -3,13 +3,12 @@ Script with util functions
 """
 
 import io
-from PIL import Image
 import logging
 
 import boto3
 import botocore
 import botocore.exceptions
-import pandas as pd
+from PIL import Image
 
 from util.constants import BUCKET_NAME, REGION_NAME
 
