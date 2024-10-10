@@ -70,8 +70,8 @@ def create_lineplot(daily_df, city):
     # Customize layout
     fig.update_layout(
         title=(
-            f"""In 2024, {city} experienced air quality exceeding the \n
-            national standard for {num_violate_nat} days \n
+            f"""In 2024, {city} experienced air quality exceeding the <br>
+            national standard for {num_violate_nat} days <br>
             and WHO standards for {num_violate_who} days"""
         ),
         title_font=dict(size=20),
@@ -124,7 +124,7 @@ def create_cigarettes_plot(daily_df, city):
     )
 
     fig.update_layout(
-        title=(f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of \n"
+        title=(f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of <br>
                smoking {annual_total} cigarettes"""),
         title_font=dict(size=20),  # Larger title font
         xaxis_title="Week",

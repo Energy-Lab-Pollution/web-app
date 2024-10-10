@@ -59,11 +59,11 @@ if st.button("Run"):
         )
 
         st.subheader("Annual PM2.5 Data")
-        st.dataframe(data_wrapper.air_quality_df)  # Show the dataframe
+        st.dataframe(data_wrapper.annual_df)  # Show the dataframe
         st.download_button(
             label="Download Data as CSV",
             data=data_wrapper.annual_df,
-            file_name=f"{city_choice}_data_{str_today}.csv",
+            file_name=f"{city_choice}_annual_data_{str_today}.csv",
             mime="text/csv",
         )
 
