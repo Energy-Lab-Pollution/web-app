@@ -55,8 +55,8 @@ if st.button("Run"):
         st.dataframe(data_wrapper.cigarettes_df)  # Show the dataframe
         st.download_button(
             label="Download Data as CSV",
-            data=data_wrapper.cigarettes_df,
-            file_name=f"{city_choice}_data_{str_today}.csv",
+            data=data_wrapper.cigarettes_csv,
+            file_name=f"{city_choice}_cigarettes_data_{str_today}.csv",
             mime="text/csv",
         )
 
@@ -64,7 +64,7 @@ if st.button("Run"):
         st.dataframe(data_wrapper.annual_df)  # Show the dataframe
         st.download_button(
             label="Download Data as CSV",
-            data=data_wrapper.annual_df,
+            data=data_wrapper.annual_csv,
             file_name=f"{city_choice}_annual_data_{str_today}.csv",
             mime="text/csv",
         )
