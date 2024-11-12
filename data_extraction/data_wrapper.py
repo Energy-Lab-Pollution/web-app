@@ -2,9 +2,10 @@
 File with class to extract csv files and data from AWS
 """
 import io
+
 import pandas as pd
 
-from util.constants import IMAGE_FOLDER, CSV_FOLDER
+from util.constants import CSV_FOLDER, IMAGE_FOLDER
 from util.utils import extract_from_s3
 
 

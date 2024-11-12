@@ -7,7 +7,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from util.constants import CIGARETTES_CONSTANT, WHO_STD_ANNUAL, WHO_STD_DAILY
+from util.constants import (
+    CIGARETTES_CONSTANT,
+    WHO_STD_ANNUAL,
+    WHO_STD_DAILY,
+    PRESENT_YEAR,
+)
 
 
 def create_lineplot(daily_df, city):
@@ -71,7 +76,7 @@ def create_lineplot(daily_df, city):
     fig.update_layout(
         title={
             "text": (
-                f"""In 2024, {city} experienced air quality exceeding the <br> national standard for {num_violate_nat} days and WHO standards for {num_violate_who} days"""
+                f"""In {PRESENT_YEAR}, {city} experienced air quality exceeding the <br> national standard for {num_violate_nat} days and WHO standards for {num_violate_who} days"""
             ),
             "x": 0.5,
             "xanchor": "center",
