@@ -19,7 +19,19 @@ from visualizations.create_visualizations import (
 )
 
 # App layout
-st.set_page_config(page_title="Pollution Monitoring App", page_icon=":bar_chart:")
+st.set_page_config(
+    page_title="Pollution Monitoring App",
+    page_icon="🌍",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    theme={
+        'primaryColor': '#E694FF',
+        'backgroundColor': '#00172B',
+        'secondaryBackgroundColor': '#0083B8',
+        'textColor': '#FAFAFA',
+        'font': 'sans serif'
+    }
+)
 
 # Date
 today = datetime.now(pytz.timezone("America/Chicago"))
