@@ -24,13 +24,6 @@ st.set_page_config(
     page_icon="🌍",
     layout="wide",
     initial_sidebar_state="expanded",
-    theme={
-        'primaryColor': '#E694FF',
-        'backgroundColor': '#00172B',
-        'secondaryBackgroundColor': '#0083B8',
-        'textColor': '#FAFAFA',
-        'font': 'sans serif'
-    }
 )
 
 # Date
