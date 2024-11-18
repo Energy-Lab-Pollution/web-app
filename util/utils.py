@@ -9,6 +9,7 @@ import boto3
 import botocore
 import botocore.exceptions
 from PIL import Image
+import streamlit as st
 
 from util.constants import BUCKET_NAME, REGION_NAME
 
@@ -20,6 +21,8 @@ logger.setLevel(logging.INFO)
 
 s3_client = boto3.client(
     "s3",
+    aws_access_key_id=st.secrets.ACCESS_KEY,
+    aws_secret_access_key=st.secrets.SECRET_KEY,
     region_name=REGION_NAME,
 )
 
