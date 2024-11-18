@@ -11,7 +11,7 @@ import botocore.exceptions
 from PIL import Image
 
 from util.constants import BUCKET_NAME, REGION_NAME
-from util.keys import ACCESS_KEY, SECRET_KEY
+
 
 # Set logger
 
@@ -20,8 +20,6 @@ logger.setLevel(logging.INFO)
 
 s3_client = boto3.client(
     "s3",
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
     region_name=REGION_NAME,
 )
 
