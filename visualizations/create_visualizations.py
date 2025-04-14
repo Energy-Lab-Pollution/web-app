@@ -133,7 +133,7 @@ def create_cigarettes_plot(daily_df, city):
     fig.update_layout(
         title={
             "text": (
-                f"""In {city}, exposure to PM2.5 in 2024 has been the equivalent of
+                f"""In {city}, exposure to PM2.5 in {PRESENT_YEAR} has been the equivalent of
                         <br> smoking {annual_total} cigarettes"""
             ),
             "x": 0.5,
