@@ -11,7 +11,7 @@ import streamlit as st
 
 # Local imports
 from data_extraction.data_wrapper import DataWrapper
-from util.constants import CITIES, LOGO_URL
+from util.constants import CITIES, LOGO_PATH
 from visualizations.create_visualizations import (
     create_annual_plot,
     create_cigarettes_plot,
@@ -33,7 +33,7 @@ str_today = datetime.strftime(today, "%Y-%m-%d")
 
 # Title and logo
 st.title("🌍 UChicago Energy & Environment Lab - Pollution Monitoring App")
-st.sidebar.image(LOGO_URL)
+st.sidebar.image(LOGO_PATH)
 
 # Sidebar: Static vs Interactive plot selector
 plot_type = st.sidebar.selectbox("Choose Plot Type:", ("Static", "Interactive"))
