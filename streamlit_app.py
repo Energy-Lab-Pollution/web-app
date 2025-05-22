@@ -102,7 +102,7 @@ if st.button("Run"):
             st.image(data_wrapper.annual_plot)
             st.download_button(
                 label="Download Annual Data as CSV",
-                data=data_wrapper.annual_csv,
+                data=data_wrapper.annual_df.to_csv(index=False).encode('utf-8'),
                 file_name=f"{city_choice}_annual_data_{str_today}.csv",
                 mime="text/csv",
             )
@@ -136,8 +136,8 @@ if st.button("Run"):
             st.plotly_chart(annual_plot)
             st.download_button(
                 label="Download Annual Data as CSV",
-                data=data_wrapper.annual_csv,  # Changed to annual CSV data
-                file_name=f"{city_choice}_annual_data.csv",
+                data=data_wrapper.annual_df.to_csv(index=False).encode('utf-8'),
+                file_name=f"{city_choice}_annual_data_{str_today}.csv",
                 mime="text/csv",
             )
 

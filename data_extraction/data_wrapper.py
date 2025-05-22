@@ -32,4 +32,5 @@ class DataWrapper:
         self.cigarettes_df = pd.read_csv(io.StringIO(self.cigarettes_csv))
         self.air_quality_df = pd.read_csv(io.StringIO(self.air_quality_csv))
         self.annual_df = pd.read_csv(io.StringIO(self.annual_csv))
+        self.annual_df = self.annual_df.loc[self.annual_df["city"] == city]
 
